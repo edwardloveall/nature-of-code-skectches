@@ -1,4 +1,4 @@
-Mover[] movers = new Mover[100];
+Mover[] movers = new Mover[40];
 PVector wind, gravity;
 
 void setup() {
@@ -6,11 +6,12 @@ void setup() {
   smooth();
   fill(230);
   stroke(0);
+  strokeWeight(2);
   frameRate(30);
   for(int i = 0; i < movers.length; i++) {
     movers[i] = new Mover(random(0.1, 5), 30, 30);
   }
-  
+
   wind = new PVector(0.2, 0);
   gravity = new PVector(0, 1);
 }
@@ -53,6 +54,12 @@ class Mover {
   }
 
   void display() {
+    if (location.x > 500) { // wtf, this shouldn't be a thing...
+      fill(255, 0, 0);
+    } else {
+      fill(230, 0, 0);
+    }
+
     ellipse(location.x, location.y, mass * size, mass * size);
   }
 
@@ -61,6 +68,7 @@ class Mover {
 
     float halfSize = size * 0.5;
     float bounceBack = 1;
+
     if (location.x + halfSize > width) {
       location.x = width;
       velocity.x *= -bounceBack;

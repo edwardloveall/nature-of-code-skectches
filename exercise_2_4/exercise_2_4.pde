@@ -1,26 +1,42 @@
-Mover[] movers = new Mover[40];
-PVector wind, gravity;
+Mover[] movers = new Mover[20];
+PVector wind;
 
 void setup() {
   size(700, 400, OPENGL);
   smooth();
   fill(230);
-  stroke(0);
-  strokeWeight(2);
-  frameRate(30);
+  stroke(67);
+  strokeWeight(3);
 
   for(int i = 0; i < movers.length; i++) {
-    movers[i] = new Mover(random(0.1, 5), 90, 90);
+    movers[i] = new Mover(random(0.5, 5), 30, 30);
   }
 
   wind = new PVector(0.2, 0);
-  gravity = new PVector(0, 1);
 }
 
 void draw() {
   background(255);
-  rect(width, height / 2, 50, 50);
   for(int i = 0; i < movers.length; i++) {
+    float m = movers[i].mass;
+    PVector gravity = new PVector(0, 0.2 * m);
+
+    float c;
+
+    if (movers[i].location.x > 300 &&
+        movers[i].location.x < 400) {
+      c = 1;
+    } else {
+      c = 0.01;
+    }
+
+
+    PVector friction = movers[i].velocity.get();
+    friction.mult(-1);
+    friction.normalize();
+    friction.mult(c);
+
+    movers[i].applyForce(friction);
     movers[i].applyForce(wind);
     movers[i].applyForce(gravity);
     movers[i].update();
@@ -56,12 +72,6 @@ class Mover {
   }
 
   void display() {
-    if (location.x > 500) { // wtf, this shouldn't be a thing...
-      fill(255, 0, 0);
-    } else {
-      fill(230, 0, 0);
-    }
-
     ellipse(location.x, location.y, mass * size, mass * size);
   }
 

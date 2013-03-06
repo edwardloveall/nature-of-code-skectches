@@ -6,7 +6,7 @@ void setup() {
   smooth();
   fill(230);
   stroke(67);
-  strokeWeight(3);
+  strokeWeight(2);
 
   for(int i = 0; i < movers.length; i++) {
     movers[i] = new Mover(random(0.5, 5), 30, 30);
@@ -17,6 +17,10 @@ void setup() {
 
 void draw() {
   background(255);
+  noStroke();
+  rect(300, 0, 100, height);
+  
+  stroke(67);
   for(int i = 0; i < movers.length; i++) {
     float m = movers[i].mass;
     PVector gravity = new PVector(0, 0.2 * m);

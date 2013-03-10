@@ -23,7 +23,6 @@ void draw() {
     for (int j = 0; j < food.size(); j++) {
       Attractor feed = (Attractor)food.get(j);
       PVector attraction = feed.attract(fishies[i]);
-      println(attraction.x + " " + attraction.y);
       fishies[i].applyForce(attraction);
     }
 

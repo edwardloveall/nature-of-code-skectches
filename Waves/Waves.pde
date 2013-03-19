@@ -4,7 +4,6 @@ float angleVel = 0.1;
 void setup() {
   size(700, 400);
   smooth();
-
 }
 
 void draw() {

@@ -15,7 +15,7 @@ void draw() {
   for (int x = 0; x <= width; x += 5) {
     float y = noise(value) * height - 10;
 
-    fill(map(sin(value), -1, 1, 0, 20), 100, 100);
+    fill(map(y, 0, height - 10, 0, 20), 100, 100);
     rect(x, y, 2, 10);
     value += inc;
   }

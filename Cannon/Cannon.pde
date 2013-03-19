@@ -18,7 +18,7 @@ void draw() {
     fragment.update();
     fragment.checkEdges(0.2);
     fragment.display();
-    println(fragment.aAcceleration);
+    println(fragment.aVelocity + " - " + fragment.velocity.x);
   }
 }
 

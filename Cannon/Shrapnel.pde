@@ -16,12 +16,12 @@ class Shrapnel extends Mover {
     velocity.add(acceleration);
     velocity.limit(topSpeed);
     location.add(velocity);
-    
+
     aAcceleration = acceleration.x / 10;
     aVelocity += aAcceleration;
     aVelocity = constrain(aVelocity, -0.1, 0.1);
     angle += aVelocity;
-    
+
     acceleration.mult(0);
   }
 

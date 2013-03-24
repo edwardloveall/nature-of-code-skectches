@@ -3,7 +3,7 @@ Bird[] flock = new Bird[50];
 void setup() {
   size(700, 400);
   smooth(4);
-  stroke(22, 51, 110);
+  stroke(255);
   strokeWeight(2);
   noFill();
 

@@ -1,13 +1,13 @@
-Bob lulu;
-Spring fozzy;
+Bob ball;
+Spring stretch;
 PVector gravity;
 
 void setup() {
   size(700, 400);
   smooth();
 
-  lulu = new Bob(20, 349, 100);
-  fozzy = new Spring(50, new PVector(width/2, 40));
+  ball = new Bob(1.0, 0.1, new PVector(random(0, width), random(0, height)));
+  stretch = new Spring(80, new PVector(width/2, 40));
 
   gravity = new PVector(0, 1);
 }
@@ -15,13 +15,12 @@ void setup() {
 void draw() {
   background(255);
 
-  PVector sproing = fozzy.connect(lulu);
-  println(sproing);
+  PVector springForce = stretch.connect(ball);
 
-  lulu.applyForce(gravity);
-  lulu.applyForce(sproing);
-  lulu.update();
+  ball.applyForce(gravity);
+  ball.applyForce(springForce);
+  ball.update();
 
-  fozzy.display(lulu);
-  lulu.display();
+  stretch.display(ball);
+  ball.display();
 }

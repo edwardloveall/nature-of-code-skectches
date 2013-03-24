@@ -1,23 +1,27 @@
 class Mover {
-  PVector acceleration;
-  PVector velocity;
   PVector location;
-  float mass;
-  float size;
+  PVector velocity;
+  PVector acceleration;
+  float topSpeed;
+  float mass, density, damping;
 
-  Mover(float m, float x, float y) {
-    size = 16;
-    mass = m;
-    location = new PVector(x, y);
+  Mover(float _mass, float _density, PVector _location) {
+    location = _location;
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
+    topSpeed = 1;
+    mass = _mass;
+    density = _density;
+    damping = 0.98;
   }
 
   void update() {
     velocity.add(acceleration);
+    velocity.limit(topSpeed);
+    velocity.mult(damping);
     location.add(velocity);
+    checkEdges(1);
     acceleration.mult(0);
-    checkEdges();
   }
 
   void applyForce(PVector force) {
@@ -25,9 +29,8 @@ class Mover {
     acceleration.add(f);
   }
 
-  void checkEdges() {
-    float halfSize = mass * size * 0.5;
-    float bounceBack = 1;
+  void checkEdges(float bounceBack) {
+    float halfSize = (mass / density) * 0.5;
 
     if (location.x + halfSize > width) {
       location.x = width - halfSize;
@@ -44,11 +47,5 @@ class Mover {
       velocity.y *= -bounceBack;
       location.y = halfSize;
     }
-  }
-
-  void display() {
-    stroke(67);
-    fill(255, 150);
-    ellipse(location.x, location.y, mass * size, mass * size);
   }
 }

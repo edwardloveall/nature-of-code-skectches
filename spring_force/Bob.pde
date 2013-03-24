@@ -1,8 +1,8 @@
 class Bob extends Mover {
   PVector bob;
 
-  Bob(float m, float x, float y) {
-    super(m, x, y);
+  Bob(float _mass, float _density, PVector _location) {
+    super(_mass, _density, _location);
   }
 
   void display() {

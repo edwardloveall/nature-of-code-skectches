@@ -23,7 +23,7 @@ void draw() {
 }
 
 void mouseClicked() {
-  for(int i = 0; i < 1; i++) {
+  for(int i = 0; i < 10; i++) {
     PVector explosion = new PVector(100, random(-20, 0));
     Shrapnel fragment = new Shrapnel(random(5, 10), random(0.5, 0.1));
     fragment.applyForce(explosion);

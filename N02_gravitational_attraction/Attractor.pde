@@ -16,7 +16,7 @@ class Attractor {
     float strength = (mass * m.mass) / (distance * distance);
     force.mult(strength);
     
-    return force; 
+    return force;
   }
   
   void display() {

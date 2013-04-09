@@ -18,7 +18,6 @@ void draw() {
   background(30);
   noStroke();
   r.display();
-  // ps.applyForce(wind);
   ps.applyRepeller(r);
   ps.run();
 }

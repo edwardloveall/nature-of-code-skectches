@@ -1,5 +1,5 @@
 import java.util.Iterator;
-color dropletColor = color(41, 172, 255);
+// color dropletColor = color(41, 172, 255);
 ParticleSystem ps;
 Repeller r;
 PVector wind;

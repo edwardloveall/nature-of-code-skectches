@@ -12,7 +12,7 @@ class Boid {
     velocity = new PVector(random(-0.5, 0.5), random(-0.5, 0.5));
     acceleration = new PVector(0, 0);
     topSpeed = 3;
-    maxForce = 0.5;
+    maxForce = 2;
     mass = 5;
     thresh = mass * 2;
   }
@@ -167,5 +167,24 @@ class Boid {
     if (location.x < 0) location.x = width;
     if (location.y > height) location.y = 0;
     if (location.y < 0) location.y = height;
+  }
+
+  void checkEdges(float bounceBack) {
+    float halfSize = mass / 2.0;
+    if (location.x + halfSize > width) {
+      location.x = width - halfSize;
+      velocity.x *= -bounceBack;
+    } else if (location.x - halfSize < 0) {
+      velocity.x *= -bounceBack;
+      location.x = halfSize;
+    }
+
+    if (location.y + halfSize > height) {
+      location.y = height - halfSize;
+      velocity.y *= -bounceBack;
+    } else if (location.y - halfSize < 0) {
+      velocity.y *= -bounceBack;
+      location.y = halfSize;
+    }
   }
 }

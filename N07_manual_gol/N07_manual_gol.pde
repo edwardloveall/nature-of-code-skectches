@@ -1,0 +1,46 @@
+Board life;
+boolean paused;
+
+void setup() {
+  size(700, 400);
+  smooth();
+  fill(0);
+  noStroke();
+  frameRate(30);
+  paused = false;
+
+  life = new Board();
+}
+
+void draw() {
+  background(255);
+  life.display();
+
+  if (frameCount % 4 == 0 && !paused) {
+    life.update();
+  }
+}
+
+int mod(int in, int wrap) {
+    int result = in % wrap;
+    if (result < 0) {
+        result += wrap;
+    }
+    return result;
+}
+
+void keyPressed() {
+  if (key == ' ') paused = true;
+}
+
+void keyReleased() {
+  if (key == ' ') paused = false;
+}
+
+void mousePressed() {
+  life.toggleLife(mouseX, mouseY);
+}
+
+void mouseDragged() {
+  // life.toggleLife(mouseX, mouseY);
+}

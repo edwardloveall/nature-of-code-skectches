@@ -75,7 +75,7 @@ class Board {
 
     for (int i = x - 1; i <= x + 1; i++) {
       for (int j = y - 1; j <= y + 1; j++) {
-        board[mod(x + i, columns)][mod(y + j, rows)].state = int(random(0, 2));
+        board[mod(i, columns)][mod(j, rows)].state = int(random(0, 2));
 
       }
     }

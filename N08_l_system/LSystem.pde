@@ -29,6 +29,7 @@ class LSystem {
 
     sentence = nextgen.toString();
     gen++;
+    color(gen * 30);
   }
 
   String getSentence() {

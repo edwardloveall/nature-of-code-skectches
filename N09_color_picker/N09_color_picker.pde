@@ -1,26 +1,28 @@
-float rectArea = 10;
-float border = 1;
-float cols = 70;
-float rows = 40;
+int rectArea = 10;
+int border = 1;
+int cols = 70;
+int rows = 40;
 
 float size;
 int pickedSide, halfWay;
 
-ArrayList<Swatch> swatches, matingPool;
+ArrayList<Swatch> matingPool;
+Swatch[][] swatches;
 
 void setup() {
-  size(int(cols * rectArea + border), int(rows * rectArea + border));
+  size(cols * rectArea + border, rows * rectArea + border);
   colorMode(HSB, 1.0);
   noStroke();
 
   halfWay = int(width/2);
   size = rectArea - border;
-  swatches = new ArrayList<Swatch>();
+
+  swatches = new Swatch[cols][rows];
 
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
       Swatch s = new Swatch(border + i * rectArea, border + j * rectArea);
-      swatches.add(s);
+      swatches[i][j] = s;
     }
   }
 }
@@ -28,29 +30,36 @@ void setup() {
 void draw() {
   background(0, 0, 1);
 
-  for(Swatch s: swatches) {
-    s.display();
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      swatches[i][j].display();
+    }
   }
+
 }
 
 void generate() {
   matingPool = new ArrayList<Swatch>();
 
-  for(Swatch s: swatches) {
-    if (s.isFit()) {
-      matingPool.add(s);
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      Swatch s = swatches[i][j];
+      if (s.isFit()) {
+        matingPool.add(s);
+      }
     }
   }
 
-  for(Swatch s: swatches) {
-    Swatch parentA = matingPool.get(int(random(matingPool.size())));
-    Swatch parentB = matingPool.get(int(random(matingPool.size())));
+  for (int i = 0; i < cols; i++) {
+    for (int j = 0; j < rows; j++) {
+      Swatch s = swatches[i][j];
+      Swatch parent = matingPool.get(int(random(matingPool.size())));
 
-    Swatch child = parentA.crossover(parentB, s.x, s.y);
-    child.mutate();
+      s.hue = parent.hue;
+      s.saturation = parent.saturation;
 
-    int i = swatches.indexOf(s);
-    swatches.set(i, child);
+      s.mutate();
+    }
   }
 }
 

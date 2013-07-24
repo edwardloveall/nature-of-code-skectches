@@ -1,8 +1,9 @@
 int rectArea = 10;
 int border = 1;
-int cols = 70;
-int rows = 40;
+int cols = 10;
+int rows = 10;
 
+float mutationRate = 0.01;
 float size;
 int pickedSide, halfWay;
 
@@ -52,13 +53,13 @@ void generate() {
 
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
-      Swatch s = swatches[i][j];
       Swatch parent = matingPool.get(int(random(matingPool.size())));
+      Swatch s = swatches[i][j];
 
-      s.hue = parent.hue;
-      s.saturation = parent.saturation;
+      Swatch child = parent.tetradic(s);
+      child.mutate();
 
-      s.mutate();
+      swatches[i][j] = child;
     }
   }
 }
@@ -73,4 +74,11 @@ void keyPressed() {
   }
 
   generate();
+}
+
+float mod(float in, float wrap) {
+  float result = in % wrap;
+  if (result < 0) { result += wrap; }
+
+  return result;
 }

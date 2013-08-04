@@ -4,7 +4,7 @@ int count = 0;
 
 void setup() {
   size(700, 400);
-  stroke(0);
+  noStroke();
 
   ptron = new Perceptron(3);
 
@@ -27,9 +27,9 @@ void draw() {
   for (int i = 0; i < count; i++) {
     int guess = ptron.feedForward(training[i].inputs);
     if (guess > 0) {
-      noFill();
+      fill(#729AFF);
     } else {
-      fill(0);
+      fill(#FF7A74);
     }
 
     ellipse(training[i].inputs[0], training[i].inputs[1], 8, 8);

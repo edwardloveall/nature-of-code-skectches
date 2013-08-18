@@ -2,8 +2,7 @@ Mover[] movers = new Mover[20];
 PVector wind, gravity;
 
 void setup() {
-  size(700, 400, OPENGL);
-  smooth();
+  size(700, 400);
   fill(230);
   stroke(0);
   frameRate(30);
@@ -31,6 +30,8 @@ void draw() {
     movers[i].update();
     movers[i].display();
   }
+
+  saveFrame("/Users/edwardloveall/Desktop/frames/frame-####.png");
 }
 
 class Mover {

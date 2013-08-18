@@ -34,6 +34,8 @@ void draw() {
 
     ellipse(training[i].inputs[0], training[i].inputs[1], 8, 8);
   }
+
+  saveFrame("/Users/edwardloveall/Desktop/frames/frame-####.png");
 }
 
 float f(float x) {

@@ -3,8 +3,7 @@ Liquid gravy;
 PVector wind, gravity;
 
 void setup() {
-  size(700, 400, OPENGL);
-  smooth();
+  size(700, 400);
   strokeWeight(2);
   frameRate(30);
 

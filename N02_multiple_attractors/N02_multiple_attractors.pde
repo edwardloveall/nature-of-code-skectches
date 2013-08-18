@@ -10,7 +10,7 @@ void setup() {
 
 void draw() {
   background(255);
-  
+
   for (int i = 0; i < magnets.length; i++) {
     for (int j = 0; j < magnets.length; j++) {
       if(i != j) {
@@ -21,4 +21,6 @@ void draw() {
     magnets[i].update();
     magnets[i].display();
   }
+
+  saveFrame("/Users/edwardloveall/Desktop/frames/frame-####.png");
 }

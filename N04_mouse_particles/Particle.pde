@@ -18,8 +18,8 @@ class Particle extends Mover {
 
   void display() {
     float alpha = constrain(life, 0, 255);
-    fill(50, alpha);
-    stroke(50, alpha);
+    fill(200, alpha);
+    stroke(100, alpha);
     ellipse(location.x, location.y, mass / density, mass / density);
   }
 

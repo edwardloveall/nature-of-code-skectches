@@ -2,8 +2,7 @@ Mover[] movers = new Mover[40];
 PVector wind, gravity;
 
 void setup() {
-  size(700, 400, OPENGL);
-  smooth();
+  size(700, 400);
   fill(230);
   stroke(0);
   strokeWeight(2);
@@ -19,7 +18,6 @@ void setup() {
 
 void draw() {
   background(255);
-  rect(width, height / 2, 50, 50);
   for(int i = 0; i < movers.length; i++) {
     movers[i].applyForce(wind);
     movers[i].applyForce(gravity);

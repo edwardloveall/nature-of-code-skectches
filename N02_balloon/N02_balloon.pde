@@ -3,9 +3,8 @@ PVector helium;
 
 void setup() {
   size(700, 400);
-  smooth();
   fill(230);
-  stroke(27);
+  noStroke();
   strokeWeight(2);
   fill(255, 50, 50);
   balloon = new Mover();
